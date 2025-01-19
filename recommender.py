@@ -6,7 +6,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 
 # Step 1: Load the dataset
-file_path = "large_meaningful_sensitivity_dataset.csv"  # Replace with your dataset file path
+file_path = "large_meaningful_sensitivity_dataset.csv"
 data = pd.read_csv(file_path)
 
 # Step 2: Data Preprocessing
