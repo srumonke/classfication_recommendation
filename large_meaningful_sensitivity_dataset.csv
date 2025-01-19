@@ -1,0 +1,497 @@
+Table Name,Column Name,Data Type,Sensitivity Level,Example Values
+Users,UserID,VARCHAR,Public,Activity Log
+Users,FullName,DECIMAL,Private,500.00
+Users,Email,INT,Confidential,john.doe@example.com
+Users,Password,DECIMAL,Private,User logged in
+Users,PhoneNumber,VARCHAR,Secret,Sensitive details
+Users,Address,VARCHAR,Confidential,Account Number
+Users,DOB,DECIMAL,Confidential,Salary
+Users,Gender,VARCHAR,Public,John
+Users,ProfilePicture,VARCHAR,Confidential,john.doe@example.com
+Transactions,TransactionID,INT,Public,Activity Log
+Transactions,AccountNumber,DECIMAL,Private,User logged in
+Transactions,Amount,TEXT,Secret,Sensitive details
+Transactions,CardDetails,TEXT,Private,Needs Improvement
+Transactions,Merchant,VARCHAR,Confidential,Salary
+Transactions,TransactionDate,INT,Public,2
+Transactions,TransactionType,INT,Confidential,Account Number
+Transactions,Currency,TEXT,Confidential,john.doe@example.com
+Transactions,Status,INT,Private,500.00
+Logs,LogID,DECIMAL,Public,2
+Logs,IPAddress,VARCHAR,Private,Needs Improvement
+Logs,Activity,INT,Secret,Sensitive details
+Logs,Timestamp,TEXT,Public,1
+Logs,SessionID,VARCHAR,Public,Activity Log
+Logs,DeviceType,DECIMAL,Public,Activity Log
+Logs,Browser,TEXT,Confidential,john.doe@example.com
+Logs,Location,VARCHAR,Public,1
+Logs,ErrorDetails,TEXT,Confidential,john.doe@example.com
+HR,EmployeeID,TEXT,Confidential,Account Number
+HR,FullName,DECIMAL,Public,2
+HR,Salary,TEXT,Confidential,john.doe@example.com
+HR,BankAccountNumber,INT,Confidential,john.doe@example.com
+HR,JoiningDate,DECIMAL,Private,User logged in
+HR,Department,INT,Private,Needs Improvement
+HR,Designation,INT,Public,Activity Log
+HR,PerformanceReview,INT,Private,500.00
+HR,ManagerID,INT,Confidential,john.doe@example.com
+Table_5,Column_1,TEXT,Private,500.00
+Table_5,Column_2,DECIMAL,Secret,Encrypted data
+Table_5,Column_3,VARCHAR,Public,John
+Table_5,Column_4,DECIMAL,Secret,Encrypted data
+Table_5,Column_5,TEXT,Confidential,Account Number
+Table_5,Column_6,DECIMAL,Confidential,john.doe@example.com
+Table_5,Column_7,TEXT,Secret,Encrypted passwords
+Table_5,Column_8,VARCHAR,Private,500.00
+Table_5,Column_9,VARCHAR,Private,Needs Improvement
+Table_5,Column_10,VARCHAR,Confidential,john.doe@example.com
+Table_6,Column_1,TEXT,Public,2
+Table_6,Column_2,VARCHAR,Secret,Encrypted data
+Table_6,Column_3,DECIMAL,Public,2
+Table_6,Column_4,VARCHAR,Public,1
+Table_6,Column_5,INT,Confidential,john.doe@example.com
+Table_6,Column_6,INT,Private,500.00
+Table_6,Column_7,VARCHAR,Public,John
+Table_6,Column_8,TEXT,Secret,Encrypted data
+Table_6,Column_9,DECIMAL,Confidential,Salary
+Table_6,Column_10,DECIMAL,Confidential,Account Number
+Table_7,Column_1,INT,Public,1
+Table_7,Column_2,DECIMAL,Public,1
+Table_7,Column_3,TEXT,Confidential,john.doe@example.com
+Table_7,Column_4,TEXT,Private,500.00
+Table_7,Column_5,TEXT,Private,Needs Improvement
+Table_7,Column_6,TEXT,Public,1
+Table_7,Column_7,TEXT,Private,500.00
+Table_7,Column_8,INT,Secret,Encrypted passwords
+Table_7,Column_9,TEXT,Public,Activity Log
+Table_7,Column_10,VARCHAR,Secret,Encrypted passwords
+Table_8,Column_1,INT,Private,500.00
+Table_8,Column_2,VARCHAR,Secret,Encrypted data
+Table_8,Column_3,VARCHAR,Public,John
+Table_8,Column_4,VARCHAR,Public,John
+Table_8,Column_5,VARCHAR,Public,1
+Table_8,Column_6,INT,Public,1
+Table_8,Column_7,VARCHAR,Secret,Encrypted data
+Table_8,Column_8,DECIMAL,Confidential,Salary
+Table_8,Column_9,INT,Confidential,john.doe@example.com
+Table_8,Column_10,DECIMAL,Private,User logged in
+Table_9,Column_1,VARCHAR,Private,500.00
+Table_9,Column_2,INT,Private,Needs Improvement
+Table_9,Column_3,TEXT,Private,Needs Improvement
+Table_9,Column_4,INT,Confidential,john.doe@example.com
+Table_9,Column_5,TEXT,Confidential,john.doe@example.com
+Table_9,Column_6,DECIMAL,Private,Needs Improvement
+Table_9,Column_7,DECIMAL,Confidential,john.doe@example.com
+Table_9,Column_8,DECIMAL,Secret,Sensitive details
+Table_9,Column_9,TEXT,Confidential,john.doe@example.com
+Table_9,Column_10,VARCHAR,Secret,Sensitive details
+Table_10,Column_1,VARCHAR,Secret,Encrypted passwords
+Table_10,Column_2,VARCHAR,Confidential,john.doe@example.com
+Table_10,Column_3,DECIMAL,Secret,Sensitive details
+Table_10,Column_4,VARCHAR,Public,Activity Log
+Table_10,Column_5,DECIMAL,Private,User logged in
+Table_10,Column_6,TEXT,Confidential,Salary
+Table_10,Column_7,INT,Public,1
+Table_10,Column_8,DECIMAL,Private,500.00
+Table_10,Column_9,INT,Confidential,Salary
+Table_10,Column_10,INT,Public,Activity Log
+Table_11,Column_1,DECIMAL,Confidential,Account Number
+Table_11,Column_2,TEXT,Confidential,john.doe@example.com
+Table_11,Column_3,TEXT,Confidential,john.doe@example.com
+Table_11,Column_4,INT,Confidential,Salary
+Table_11,Column_5,INT,Private,Needs Improvement
+Table_11,Column_6,INT,Private,Needs Improvement
+Table_11,Column_7,TEXT,Public,1
+Table_11,Column_8,TEXT,Public,Activity Log
+Table_11,Column_9,INT,Private,Needs Improvement
+Table_11,Column_10,TEXT,Private,500.00
+Table_12,Column_1,INT,Confidential,Account Number
+Table_12,Column_2,DECIMAL,Confidential,Salary
+Table_12,Column_3,DECIMAL,Secret,Encrypted data
+Table_12,Column_4,VARCHAR,Public,1
+Table_12,Column_5,TEXT,Private,User logged in
+Table_12,Column_6,INT,Confidential,Salary
+Table_12,Column_7,INT,Private,500.00
+Table_12,Column_8,VARCHAR,Confidential,Account Number
+Table_12,Column_9,TEXT,Private,Needs Improvement
+Table_12,Column_10,INT,Public,John
+Table_13,Column_1,TEXT,Secret,Sensitive details
+Table_13,Column_2,DECIMAL,Confidential,Account Number
+Table_13,Column_3,DECIMAL,Private,500.00
+Table_13,Column_4,VARCHAR,Secret,Encrypted data
+Table_13,Column_5,VARCHAR,Public,1
+Table_13,Column_6,INT,Private,User logged in
+Table_13,Column_7,TEXT,Private,500.00
+Table_13,Column_8,VARCHAR,Public,John
+Table_13,Column_9,VARCHAR,Confidential,john.doe@example.com
+Table_13,Column_10,INT,Secret,Sensitive details
+Table_14,Column_1,DECIMAL,Private,User logged in
+Table_14,Column_2,INT,Public,1
+Table_14,Column_3,VARCHAR,Public,2
+Table_14,Column_4,TEXT,Secret,Encrypted passwords
+Table_14,Column_5,TEXT,Public,1
+Table_14,Column_6,TEXT,Public,Activity Log
+Table_14,Column_7,TEXT,Confidential,john.doe@example.com
+Table_14,Column_8,TEXT,Confidential,Salary
+Table_14,Column_9,DECIMAL,Private,500.00
+Table_14,Column_10,TEXT,Private,Needs Improvement
+Table_15,Column_1,INT,Secret,Sensitive details
+Table_15,Column_2,VARCHAR,Confidential,Account Number
+Table_15,Column_3,DECIMAL,Public,John
+Table_15,Column_4,TEXT,Public,Activity Log
+Table_15,Column_5,INT,Secret,Sensitive details
+Table_15,Column_6,TEXT,Private,Needs Improvement
+Table_15,Column_7,DECIMAL,Secret,Encrypted passwords
+Table_15,Column_8,INT,Secret,Sensitive details
+Table_15,Column_9,VARCHAR,Confidential,Account Number
+Table_15,Column_10,DECIMAL,Public,John
+Table_16,Column_1,VARCHAR,Private,Needs Improvement
+Table_16,Column_2,TEXT,Secret,Encrypted data
+Table_16,Column_3,TEXT,Private,500.00
+Table_16,Column_4,VARCHAR,Private,Needs Improvement
+Table_16,Column_5,VARCHAR,Confidential,Account Number
+Table_16,Column_6,TEXT,Secret,Sensitive details
+Table_16,Column_7,INT,Secret,Encrypted passwords
+Table_16,Column_8,TEXT,Public,1
+Table_16,Column_9,DECIMAL,Confidential,Account Number
+Table_16,Column_10,DECIMAL,Private,500.00
+Table_17,Column_1,TEXT,Private,User logged in
+Table_17,Column_2,INT,Public,Activity Log
+Table_17,Column_3,DECIMAL,Secret,Encrypted data
+Table_17,Column_4,TEXT,Secret,Encrypted passwords
+Table_17,Column_5,INT,Secret,Encrypted passwords
+Table_17,Column_6,VARCHAR,Private,User logged in
+Table_17,Column_7,INT,Confidential,john.doe@example.com
+Table_17,Column_8,INT,Public,2
+Table_17,Column_9,INT,Public,1
+Table_17,Column_10,VARCHAR,Secret,Encrypted data
+Table_18,Column_1,INT,Confidential,Account Number
+Table_18,Column_2,TEXT,Public,Activity Log
+Table_18,Column_3,INT,Secret,Encrypted data
+Table_18,Column_4,DECIMAL,Private,Needs Improvement
+Table_18,Column_5,INT,Secret,Encrypted data
+Table_18,Column_6,DECIMAL,Public,1
+Table_18,Column_7,VARCHAR,Private,500.00
+Table_18,Column_8,INT,Confidential,john.doe@example.com
+Table_18,Column_9,TEXT,Confidential,Account Number
+Table_18,Column_10,DECIMAL,Secret,Encrypted data
+Table_19,Column_1,INT,Public,John
+Table_19,Column_2,VARCHAR,Public,2
+Table_19,Column_3,TEXT,Public,Activity Log
+Table_19,Column_4,TEXT,Confidential,john.doe@example.com
+Table_19,Column_5,DECIMAL,Confidential,Salary
+Table_19,Column_6,DECIMAL,Public,2
+Table_19,Column_7,INT,Private,User logged in
+Table_19,Column_8,INT,Secret,Sensitive details
+Table_19,Column_9,TEXT,Confidential,john.doe@example.com
+Table_19,Column_10,DECIMAL,Secret,Sensitive details
+Table_20,Column_1,DECIMAL,Secret,Sensitive details
+Table_20,Column_2,DECIMAL,Confidential,Salary
+Table_20,Column_3,VARCHAR,Confidential,Salary
+Table_20,Column_4,VARCHAR,Private,User logged in
+Table_20,Column_5,DECIMAL,Confidential,Salary
+Table_20,Column_6,TEXT,Secret,Encrypted passwords
+Table_20,Column_7,TEXT,Secret,Encrypted data
+Table_20,Column_8,TEXT,Confidential,Account Number
+Table_20,Column_9,DECIMAL,Private,Needs Improvement
+Table_20,Column_10,INT,Public,2
+Table_21,Column_1,DECIMAL,Public,2
+Table_21,Column_2,DECIMAL,Public,Activity Log
+Table_21,Column_3,DECIMAL,Public,John
+Table_21,Column_4,DECIMAL,Confidential,Account Number
+Table_21,Column_5,TEXT,Private,500.00
+Table_21,Column_6,DECIMAL,Secret,Sensitive details
+Table_21,Column_7,TEXT,Private,Needs Improvement
+Table_21,Column_8,INT,Public,1
+Table_21,Column_9,TEXT,Public,John
+Table_21,Column_10,DECIMAL,Secret,Encrypted data
+Table_22,Column_1,TEXT,Confidential,john.doe@example.com
+Table_22,Column_2,TEXT,Secret,Sensitive details
+Table_22,Column_3,DECIMAL,Public,1
+Table_22,Column_4,INT,Confidential,Salary
+Table_22,Column_5,VARCHAR,Private,500.00
+Table_22,Column_6,DECIMAL,Secret,Encrypted passwords
+Table_22,Column_7,INT,Public,Activity Log
+Table_22,Column_8,INT,Secret,Sensitive details
+Table_22,Column_9,DECIMAL,Confidential,Account Number
+Table_22,Column_10,VARCHAR,Private,500.00
+Table_23,Column_1,VARCHAR,Secret,Sensitive details
+Table_23,Column_2,INT,Confidential,Account Number
+Table_23,Column_3,INT,Private,Needs Improvement
+Table_23,Column_4,INT,Private,Needs Improvement
+Table_23,Column_5,INT,Secret,Encrypted data
+Table_23,Column_6,INT,Secret,Encrypted data
+Table_23,Column_7,DECIMAL,Private,Needs Improvement
+Table_23,Column_8,TEXT,Private,Needs Improvement
+Table_23,Column_9,INT,Private,500.00
+Table_23,Column_10,DECIMAL,Confidential,Account Number
+Table_24,Column_1,TEXT,Public,Activity Log
+Table_24,Column_2,VARCHAR,Secret,Encrypted data
+Table_24,Column_3,TEXT,Private,User logged in
+Table_24,Column_4,TEXT,Public,Activity Log
+Table_24,Column_5,VARCHAR,Confidential,Salary
+Table_24,Column_6,TEXT,Private,500.00
+Table_24,Column_7,INT,Secret,Encrypted data
+Table_24,Column_8,DECIMAL,Private,User logged in
+Table_24,Column_9,TEXT,Secret,Encrypted data
+Table_24,Column_10,DECIMAL,Confidential,Account Number
+Table_25,Column_1,TEXT,Private,Needs Improvement
+Table_25,Column_2,VARCHAR,Private,User logged in
+Table_25,Column_3,VARCHAR,Confidential,Account Number
+Table_25,Column_4,TEXT,Private,500.00
+Table_25,Column_5,DECIMAL,Secret,Encrypted passwords
+Table_25,Column_6,INT,Public,John
+Table_25,Column_7,TEXT,Public,1
+Table_25,Column_8,DECIMAL,Secret,Encrypted passwords
+Table_25,Column_9,INT,Secret,Encrypted passwords
+Table_25,Column_10,DECIMAL,Public,John
+Table_26,Column_1,DECIMAL,Public,John
+Table_26,Column_2,VARCHAR,Public,John
+Table_26,Column_3,TEXT,Secret,Sensitive details
+Table_26,Column_4,VARCHAR,Secret,Encrypted passwords
+Table_26,Column_5,DECIMAL,Confidential,Account Number
+Table_26,Column_6,INT,Private,User logged in
+Table_26,Column_7,INT,Confidential,john.doe@example.com
+Table_26,Column_8,TEXT,Public,2
+Table_26,Column_9,DECIMAL,Private,500.00
+Table_26,Column_10,TEXT,Private,User logged in
+Table_27,Column_1,VARCHAR,Confidential,Account Number
+Table_27,Column_2,DECIMAL,Confidential,Account Number
+Table_27,Column_3,DECIMAL,Secret,Encrypted data
+Table_27,Column_4,VARCHAR,Public,Activity Log
+Table_27,Column_5,DECIMAL,Secret,Encrypted passwords
+Table_27,Column_6,VARCHAR,Confidential,Account Number
+Table_27,Column_7,INT,Public,1
+Table_27,Column_8,DECIMAL,Private,500.00
+Table_27,Column_9,DECIMAL,Confidential,Account Number
+Table_27,Column_10,TEXT,Public,1
+Table_28,Column_1,VARCHAR,Confidential,Salary
+Table_28,Column_2,TEXT,Secret,Sensitive details
+Table_28,Column_3,VARCHAR,Confidential,john.doe@example.com
+Table_28,Column_4,INT,Secret,Encrypted data
+Table_28,Column_5,INT,Private,500.00
+Table_28,Column_6,TEXT,Private,User logged in
+Table_28,Column_7,DECIMAL,Secret,Encrypted passwords
+Table_28,Column_8,INT,Confidential,Account Number
+Table_28,Column_9,TEXT,Confidential,john.doe@example.com
+Table_28,Column_10,VARCHAR,Secret,Encrypted data
+Table_29,Column_1,TEXT,Confidential,Salary
+Table_29,Column_2,DECIMAL,Secret,Sensitive details
+Table_29,Column_3,VARCHAR,Confidential,Salary
+Table_29,Column_4,INT,Public,2
+Table_29,Column_5,VARCHAR,Public,1
+Table_29,Column_6,INT,Public,2
+Table_29,Column_7,DECIMAL,Confidential,Salary
+Table_29,Column_8,INT,Public,John
+Table_29,Column_9,DECIMAL,Public,1
+Table_29,Column_10,VARCHAR,Secret,Encrypted data
+Table_30,Column_1,TEXT,Public,Activity Log
+Table_30,Column_2,VARCHAR,Private,User logged in
+Table_30,Column_3,TEXT,Public,John
+Table_30,Column_4,TEXT,Secret,Encrypted passwords
+Table_30,Column_5,DECIMAL,Secret,Sensitive details
+Table_30,Column_6,VARCHAR,Secret,Encrypted passwords
+Table_30,Column_7,TEXT,Public,2
+Table_30,Column_8,TEXT,Secret,Encrypted passwords
+Table_30,Column_9,DECIMAL,Public,1
+Table_30,Column_10,VARCHAR,Secret,Encrypted passwords
+Table_31,Column_1,TEXT,Public,1
+Table_31,Column_2,VARCHAR,Confidential,john.doe@example.com
+Table_31,Column_3,INT,Public,John
+Table_31,Column_4,VARCHAR,Public,Activity Log
+Table_31,Column_5,DECIMAL,Public,John
+Table_31,Column_6,INT,Confidential,Account Number
+Table_31,Column_7,INT,Secret,Sensitive details
+Table_31,Column_8,DECIMAL,Confidential,Salary
+Table_31,Column_9,TEXT,Private,Needs Improvement
+Table_31,Column_10,INT,Public,2
+Table_32,Column_1,INT,Public,1
+Table_32,Column_2,INT,Secret,Encrypted data
+Table_32,Column_3,DECIMAL,Private,User logged in
+Table_32,Column_4,DECIMAL,Secret,Sensitive details
+Table_32,Column_5,TEXT,Secret,Sensitive details
+Table_32,Column_6,TEXT,Confidential,Salary
+Table_32,Column_7,TEXT,Public,John
+Table_32,Column_8,TEXT,Confidential,Salary
+Table_32,Column_9,TEXT,Confidential,Account Number
+Table_32,Column_10,DECIMAL,Secret,Sensitive details
+Table_33,Column_1,INT,Confidential,Salary
+Table_33,Column_2,TEXT,Private,User logged in
+Table_33,Column_3,INT,Private,User logged in
+Table_33,Column_4,VARCHAR,Secret,Encrypted data
+Table_33,Column_5,TEXT,Public,1
+Table_33,Column_6,TEXT,Private,User logged in
+Table_33,Column_7,INT,Secret,Encrypted passwords
+Table_33,Column_8,INT,Private,500.00
+Table_33,Column_9,TEXT,Public,John
+Table_33,Column_10,INT,Private,500.00
+Table_34,Column_1,VARCHAR,Confidential,john.doe@example.com
+Table_34,Column_2,INT,Confidential,Salary
+Table_34,Column_3,VARCHAR,Confidential,Account Number
+Table_34,Column_4,VARCHAR,Private,500.00
+Table_34,Column_5,VARCHAR,Confidential,Account Number
+Table_34,Column_6,TEXT,Confidential,john.doe@example.com
+Table_34,Column_7,INT,Public,1
+Table_34,Column_8,TEXT,Private,Needs Improvement
+Table_34,Column_9,DECIMAL,Confidential,john.doe@example.com
+Table_34,Column_10,DECIMAL,Private,User logged in
+Table_35,Column_1,DECIMAL,Confidential,Account Number
+Table_35,Column_2,INT,Confidential,john.doe@example.com
+Table_35,Column_3,INT,Public,Activity Log
+Table_35,Column_4,INT,Secret,Encrypted passwords
+Table_35,Column_5,VARCHAR,Secret,Sensitive details
+Table_35,Column_6,TEXT,Confidential,Salary
+Table_35,Column_7,TEXT,Private,User logged in
+Table_35,Column_8,INT,Confidential,john.doe@example.com
+Table_35,Column_9,TEXT,Confidential,john.doe@example.com
+Table_35,Column_10,TEXT,Secret,Sensitive details
+Table_36,Column_1,TEXT,Confidential,Salary
+Table_36,Column_2,INT,Confidential,Salary
+Table_36,Column_3,TEXT,Confidential,Account Number
+Table_36,Column_4,VARCHAR,Secret,Encrypted passwords
+Table_36,Column_5,VARCHAR,Public,Activity Log
+Table_36,Column_6,VARCHAR,Private,User logged in
+Table_36,Column_7,DECIMAL,Confidential,Salary
+Table_36,Column_8,INT,Secret,Encrypted data
+Table_36,Column_9,INT,Secret,Sensitive details
+Table_36,Column_10,TEXT,Confidential,Account Number
+Table_37,Column_1,DECIMAL,Private,Needs Improvement
+Table_37,Column_2,INT,Confidential,john.doe@example.com
+Table_37,Column_3,DECIMAL,Private,500.00
+Table_37,Column_4,INT,Secret,Encrypted data
+Table_37,Column_5,DECIMAL,Secret,Sensitive details
+Table_37,Column_6,TEXT,Confidential,john.doe@example.com
+Table_37,Column_7,VARCHAR,Private,User logged in
+Table_37,Column_8,INT,Private,500.00
+Table_37,Column_9,TEXT,Private,User logged in
+Table_37,Column_10,INT,Public,1
+Table_38,Column_1,VARCHAR,Public,1
+Table_38,Column_2,VARCHAR,Private,500.00
+Table_38,Column_3,VARCHAR,Private,User logged in
+Table_38,Column_4,INT,Private,500.00
+Table_38,Column_5,TEXT,Public,2
+Table_38,Column_6,DECIMAL,Public,2
+Table_38,Column_7,VARCHAR,Confidential,Account Number
+Table_38,Column_8,VARCHAR,Private,User logged in
+Table_38,Column_9,TEXT,Private,Needs Improvement
+Table_38,Column_10,VARCHAR,Secret,Sensitive details
+Table_39,Column_1,DECIMAL,Private,500.00
+Table_39,Column_2,TEXT,Secret,Encrypted data
+Table_39,Column_3,INT,Public,1
+Table_39,Column_4,VARCHAR,Private,500.00
+Table_39,Column_5,INT,Private,Needs Improvement
+Table_39,Column_6,DECIMAL,Confidential,Salary
+Table_39,Column_7,DECIMAL,Public,Activity Log
+Table_39,Column_8,TEXT,Private,500.00
+Table_39,Column_9,DECIMAL,Public,Activity Log
+Table_39,Column_10,VARCHAR,Confidential,Salary
+Table_40,Column_1,TEXT,Secret,Encrypted passwords
+Table_40,Column_2,DECIMAL,Confidential,Account Number
+Table_40,Column_3,DECIMAL,Public,Activity Log
+Table_40,Column_4,VARCHAR,Confidential,Account Number
+Table_40,Column_5,VARCHAR,Secret,Encrypted data
+Table_40,Column_6,INT,Confidential,Account Number
+Table_40,Column_7,VARCHAR,Private,User logged in
+Table_40,Column_8,DECIMAL,Confidential,Account Number
+Table_40,Column_9,DECIMAL,Public,John
+Table_40,Column_10,VARCHAR,Secret,Encrypted passwords
+Table_41,Column_1,TEXT,Public,John
+Table_41,Column_2,DECIMAL,Secret,Encrypted data
+Table_41,Column_3,INT,Private,500.00
+Table_41,Column_4,VARCHAR,Private,User logged in
+Table_41,Column_5,VARCHAR,Confidential,Account Number
+Table_41,Column_6,TEXT,Private,User logged in
+Table_41,Column_7,DECIMAL,Public,Activity Log
+Table_41,Column_8,INT,Public,John
+Table_41,Column_9,TEXT,Secret,Sensitive details
+Table_41,Column_10,VARCHAR,Secret,Encrypted passwords
+Table_42,Column_1,INT,Confidential,john.doe@example.com
+Table_42,Column_2,TEXT,Secret,Sensitive details
+Table_42,Column_3,TEXT,Private,500.00
+Table_42,Column_4,TEXT,Public,2
+Table_42,Column_5,VARCHAR,Confidential,Salary
+Table_42,Column_6,TEXT,Secret,Sensitive details
+Table_42,Column_7,INT,Secret,Sensitive details
+Table_42,Column_8,TEXT,Public,Activity Log
+Table_42,Column_9,TEXT,Secret,Sensitive details
+Table_42,Column_10,VARCHAR,Confidential,Account Number
+Table_43,Column_1,INT,Public,1
+Table_43,Column_2,TEXT,Secret,Encrypted data
+Table_43,Column_3,VARCHAR,Secret,Encrypted passwords
+Table_43,Column_4,TEXT,Private,500.00
+Table_43,Column_5,TEXT,Private,User logged in
+Table_43,Column_6,TEXT,Public,1
+Table_43,Column_7,INT,Private,Needs Improvement
+Table_43,Column_8,INT,Secret,Encrypted data
+Table_43,Column_9,VARCHAR,Private,User logged in
+Table_43,Column_10,VARCHAR,Private,User logged in
+Table_44,Column_1,DECIMAL,Confidential,Salary
+Table_44,Column_2,INT,Secret,Encrypted passwords
+Table_44,Column_3,TEXT,Confidential,john.doe@example.com
+Table_44,Column_4,TEXT,Public,Activity Log
+Table_44,Column_5,TEXT,Confidential,john.doe@example.com
+Table_44,Column_6,VARCHAR,Public,Activity Log
+Table_44,Column_7,DECIMAL,Secret,Encrypted data
+Table_44,Column_8,INT,Private,500.00
+Table_44,Column_9,DECIMAL,Secret,Encrypted data
+Table_44,Column_10,DECIMAL,Public,Activity Log
+Table_45,Column_1,VARCHAR,Confidential,Account Number
+Table_45,Column_2,DECIMAL,Secret,Encrypted passwords
+Table_45,Column_3,INT,Confidential,Salary
+Table_45,Column_4,DECIMAL,Public,2
+Table_45,Column_5,DECIMAL,Confidential,Account Number
+Table_45,Column_6,INT,Private,User logged in
+Table_45,Column_7,TEXT,Secret,Encrypted passwords
+Table_45,Column_8,TEXT,Private,500.00
+Table_45,Column_9,TEXT,Public,John
+Table_45,Column_10,INT,Private,Needs Improvement
+Table_46,Column_1,TEXT,Public,Activity Log
+Table_46,Column_2,DECIMAL,Confidential,Salary
+Table_46,Column_3,INT,Secret,Sensitive details
+Table_46,Column_4,VARCHAR,Private,500.00
+Table_46,Column_5,VARCHAR,Secret,Sensitive details
+Table_46,Column_6,DECIMAL,Secret,Encrypted data
+Table_46,Column_7,DECIMAL,Public,2
+Table_46,Column_8,INT,Public,John
+Table_46,Column_9,INT,Secret,Encrypted data
+Table_46,Column_10,TEXT,Private,500.00
+Table_47,Column_1,VARCHAR,Public,1
+Table_47,Column_2,INT,Private,User logged in
+Table_47,Column_3,DECIMAL,Public,1
+Table_47,Column_4,TEXT,Public,Activity Log
+Table_47,Column_5,TEXT,Confidential,Account Number
+Table_47,Column_6,INT,Public,2
+Table_47,Column_7,TEXT,Private,500.00
+Table_47,Column_8,INT,Private,User logged in
+Table_47,Column_9,TEXT,Private,Needs Improvement
+Table_47,Column_10,DECIMAL,Secret,Encrypted data
+Table_48,Column_1,INT,Public,Activity Log
+Table_48,Column_2,VARCHAR,Confidential,Salary
+Table_48,Column_3,INT,Secret,Sensitive details
+Table_48,Column_4,VARCHAR,Secret,Encrypted data
+Table_48,Column_5,TEXT,Confidential,john.doe@example.com
+Table_48,Column_6,TEXT,Secret,Encrypted passwords
+Table_48,Column_7,VARCHAR,Confidential,john.doe@example.com
+Table_48,Column_8,DECIMAL,Private,User logged in
+Table_48,Column_9,INT,Public,1
+Table_48,Column_10,INT,Private,Needs Improvement
+Table_49,Column_1,DECIMAL,Secret,Encrypted passwords
+Table_49,Column_2,INT,Public,1
+Table_49,Column_3,TEXT,Private,Needs Improvement
+Table_49,Column_4,TEXT,Public,Activity Log
+Table_49,Column_5,DECIMAL,Private,User logged in
+Table_49,Column_6,TEXT,Secret,Encrypted passwords
+Table_49,Column_7,TEXT,Private,Needs Improvement
+Table_49,Column_8,INT,Secret,Encrypted passwords
+Table_49,Column_9,INT,Public,1
+Table_49,Column_10,INT,Private,500.00
+Table_50,Column_1,DECIMAL,Public,1
+Table_50,Column_2,DECIMAL,Private,Needs Improvement
+Table_50,Column_3,TEXT,Public,Activity Log
+Table_50,Column_4,TEXT,Private,User logged in
+Table_50,Column_5,DECIMAL,Private,500.00
+Table_50,Column_6,VARCHAR,Public,John
+Table_50,Column_7,TEXT,Confidential,Salary
+Table_50,Column_8,INT,Confidential,Account Number
+Table_50,Column_9,VARCHAR,Public,2
+Table_50,Column_10,TEXT,Secret,Encrypted data
