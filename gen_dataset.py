@@ -7,42 +7,50 @@ fake = faker.Faker()
 
 # Define 100 meaningful column names with their corresponding data types
 column_data = {
-    "FullName": "TEXT", "Age": "INT", "Gender": "TEXT", "DateOfBirth": "DATE", "Address": "TEXT", 
-    "PhoneNumber": "TEXT", "Email": "TEXT", "Occupation": "TEXT", "Salary": "DECIMAL", 
-    "Country": "TEXT", "State": "TEXT", "City": "TEXT", "ZipCode": "TEXT", "MaritalStatus": "TEXT", 
-    "ChildrenCount": "INT", "SpouseName": "TEXT", "Hobby": "TEXT", "SocialSecurityNumber": "TEXT", 
-    "TaxID": "TEXT", "CreditCardNumber": "TEXT", "BankAccountNumber": "TEXT", "LoanAmount": "DECIMAL", 
-    "InvestmentValue": "DECIMAL", "MortgageAmount": "DECIMAL", "HealthInsuranceNumber": "TEXT", 
-    "MedicalHistory": "TEXT", "Diagnosis": "TEXT", "Prescription": "TEXT", "InsuranceClaims": "TEXT", 
-    "PerformanceReviews": "TEXT", "PaymentHistory": "TEXT", "TransactionAmount": "DECIMAL", 
-    "TransactionDate": "DATE", "PaymentMethod": "TEXT", "BrowserType": "TEXT", "LoginTime": "DATE", 
-    "LastLoginTime": "DATE", "ProfilePictureURL": "TEXT", "IP_Address": "TEXT", "DeviceType": "TEXT", 
-    "SocialMediaHandle": "TEXT", "AccountStatus": "TEXT", "MembershipStatus": "TEXT", 
-    "PurchaseHistory": "TEXT", "Wishlist": "TEXT", "CartItems": "TEXT", "FavoriteProducts": "TEXT", 
-    "CustomerFeedback": "TEXT", "ProductReviews": "TEXT", "OrderHistory": "TEXT", 
-    "ShippingAddress": "TEXT", "BillingAddress": "TEXT", "DiscountCoupons": "TEXT", "LoyaltyPoints": "INT", 
-    "EmployeeID": "TEXT", "Department": "TEXT", "JobTitle": "TEXT", "JobDescription": "TEXT", 
-    "WorkLocation": "TEXT", "StartDate": "DATE", "EndDate": "DATE", "ContractType": "TEXT", 
-    "EmployeePerformance": "TEXT", "ManagerName": "TEXT", "TeamMembers": "TEXT", "LeaveBalance": "INT", 
-    "HealthRecord": "TEXT", "FamilyHistory": "TEXT", "EmergencyContact": "TEXT", "EmployeeBenefits": "TEXT", 
-    "AnnualSalary": "DECIMAL", "BonusAmount": "DECIMAL", "TaxRate": "DECIMAL", "RetirementPlan": "TEXT", 
-    "CompanyStockOptions": "TEXT", "PayrollDetails": "TEXT", "WorkEmail": "TEXT", "WorkPhone": "TEXT", 
-    "CorporateCreditCard": "TEXT", "BusinessTravelHistory": "TEXT", "ConferenceAttendance": "TEXT", 
-    "SystemAccessLevel": "TEXT", "LoginAttempts": "INT", "FailedLogins": "INT", "APIKey": "TEXT", 
-    "SessionToken": "TEXT", "PasswordHash": "TEXT", "SecurityQuestions": "TEXT", "TwoFactorEnabled": "BOOLEAN", 
-    "AuditLogs": "TEXT", "LastPasswordChange": "DATE", "SecurityBreachHistory": "TEXT", "NetworkAccessLogs": "TEXT", 
-    "AccessControlLists": "TEXT", "ServerIPs": "TEXT", "FirewallRules": "TEXT", "BackupHistory": "TEXT", 
-    "DisasterRecoveryPlan": "TEXT", "IncidentReports": "TEXT", "RiskAssessment": "TEXT", "ComplianceReports": "TEXT", 
-    "SecurityPolicies": "TEXT", "DataEncryptionKeys": "TEXT", "SensitiveDataAccess": "TEXT", "DocumentVersion": "TEXT", 
-    "ConfidentialReports": "TEXT", "InternalMeetings": "TEXT", "CompanyBudget": "DECIMAL", 
-    "LegalDocuments": "TEXT", "VendorContracts": "TEXT", "SupplierDetails": "TEXT", "ThirdPartyContracts": "TEXT", 
-    "InternalEmails": "TEXT", "MeetingNotes": "TEXT", "ExpenseReports": "TEXT", "ResourceAllocation": "TEXT", 
-    "ProjectBudget": "DECIMAL", "ProjectTimeline": "TEXT", "TaskAssignments": "TEXT", "TeamCollaboration": "TEXT", 
+    "FullName": "TEXT", "Age": "INT", "Gender": "TEXT", "DateOfBirth": "DATE", "Address": "TEXT",
+    "PhoneNumber": "TEXT", "Email": "TEXT", "Occupation": "TEXT", "Salary": "DECIMAL",
+    "Country": "TEXT", "State": "TEXT", "City": "TEXT", "ZipCode": "TEXT", "MaritalStatus": "TEXT",
+    "ChildrenCount": "INT", "SpouseName": "TEXT", "Hobby": "TEXT", "SocialSecurityNumber": "TEXT",
+    "TaxID": "TEXT", "CreditCardNumber": "TEXT", "BankAccountNumber": "TEXT", "LoanAmount": "DECIMAL",
+    "InvestmentValue": "DECIMAL", "MortgageAmount": "DECIMAL", "HealthInsuranceNumber": "TEXT",
+    "MedicalHistory": "TEXT", "Diagnosis": "TEXT", "Prescription": "TEXT", "InsuranceClaims": "TEXT",
+    "PerformanceReviews": "TEXT", "PaymentHistory": "TEXT", "TransactionAmount": "DECIMAL",
+    "TransactionDate": "DATE", "PaymentMethod": "TEXT", "BrowserType": "TEXT", "LoginTime": "DATE",
+    "LastLoginTime": "DATE", "ProfilePictureURL": "TEXT", "IP_Address": "TEXT", "DeviceType": "TEXT",
+    "SocialMediaHandle": "TEXT", "AccountStatus": "TEXT", "MembershipStatus": "TEXT",
+    "PurchaseHistory": "TEXT", "Wishlist": "TEXT", "CartItems": "TEXT", "FavoriteProducts": "TEXT",
+    "CustomerFeedback": "TEXT", "ProductReviews": "TEXT", "OrderHistory": "TEXT",
+    "ShippingAddress": "TEXT", "BillingAddress": "TEXT", "DiscountCoupons": "TEXT", "LoyaltyPoints": "INT",
+    "EmployeeID": "TEXT", "Department": "TEXT", "JobTitle": "TEXT", "JobDescription": "TEXT",
+    "WorkLocation": "TEXT", "StartDate": "DATE", "EndDate": "DATE", "ContractType": "TEXT",
+    "EmployeePerformance": "TEXT", "ManagerName": "TEXT", "TeamMembers": "TEXT", "LeaveBalance": "INT",
+    "HealthRecord": "TEXT", "FamilyHistory": "TEXT", "EmergencyContact": "TEXT", "EmployeeBenefits": "TEXT",
+    "AnnualSalary": "DECIMAL", "BonusAmount": "DECIMAL", "TaxRate": "DECIMAL", "RetirementPlan": "TEXT",
+    "CompanyStockOptions": "TEXT", "PayrollDetails": "TEXT", "WorkEmail": "TEXT", "WorkPhone": "TEXT",
+    "CorporateCreditCard": "TEXT", "BusinessTravelHistory": "TEXT", "ConferenceAttendance": "TEXT",
+    "SystemAccessLevel": "TEXT", "LoginAttempts": "INT", "FailedLogins": "INT", "APIKey": "TEXT",
+    "SessionToken": "TEXT", "PasswordHash": "TEXT", "SecurityQuestions": "TEXT", "TwoFactorEnabled": "BOOLEAN",
+    "AuditLogs": "TEXT", "LastPasswordChange": "DATE", "SecurityBreachHistory": "TEXT", "NetworkAccessLogs": "TEXT",
+    "AccessControlLists": "TEXT", "ServerIPs": "TEXT", "FirewallRules": "TEXT", "BackupHistory": "TEXT",
+    "DisasterRecoveryPlan": "TEXT", "IncidentReports": "TEXT", "RiskAssessment": "TEXT", "ComplianceReports": "TEXT",
+    "SecurityPolicies": "TEXT", "DataEncryptionKeys": "TEXT", "SensitiveDataAccess": "TEXT", "DocumentVersion": "TEXT",
+    "ConfidentialReports": "TEXT", "InternalMeetings": "TEXT", "CompanyBudget": "DECIMAL",
+    "LegalDocuments": "TEXT", "VendorContracts": "TEXT", "SupplierDetails": "TEXT", "ThirdPartyContracts": "TEXT",
+    "InternalEmails": "TEXT", "MeetingNotes": "TEXT", "ExpenseReports": "TEXT", "ResourceAllocation": "TEXT",
+    "ProjectBudget": "DECIMAL", "ProjectTimeline": "TEXT", "TaskAssignments": "TEXT", "TeamCollaboration": "TEXT",
     "ProjectFeedback": "TEXT", "ClientContracts": "TEXT", "ClientInvoices": "TEXT", "CustomerSupportTickets": "TEXT"
 }
 
-# Define sensitivity levels
-sensitivity_levels = ['Public', 'Private', 'Confidential', 'Secret']
+# Define sensitivity levels with logical mapping
+sensitivity_map = {
+    "Public": ["Hobby", "BrowserType", "DeviceType", "PurchaseHistory", "FavoriteProducts", "CustomerFeedback"],
+    "Private": ["FullName", "Age", "Gender", "DateOfBirth", "Address", "PhoneNumber", "Email", "City", "State", "Country", "JobTitle", "StartDate", "EndDate", "SocialMediaHandle", "LoginAttempts", "FailedLogins"],
+    "Confidential": ["Salary", "BankAccountNumber", "LoanAmount", "InvestmentValue", "MedicalHistory", "EmployeePerformance", "TaxRate", "InternalEmails", "VendorContracts", "ClientInvoices", "CorporateCreditCard"],
+    "Secret": ["SocialSecurityNumber", "TaxID", "CreditCardNumber", "HealthInsuranceNumber", "PasswordHash", "APIKey", "SessionToken", "DataEncryptionKeys", "RiskAssessment", "DisasterRecoveryPlan", "FirewallRules", "BackupHistory"]
+}
+
+# Precompute sensitivity levels for all column names
+column_sensitivity = {col: level for level, columns in sensitivity_map.items() for col in columns}
 
 # Function to generate random example values based on the column name and data type
 def generate_value(column_name, data_type):
@@ -65,12 +73,9 @@ def generate_value(column_name, data_type):
     elif data_type == 'DECIMAL':
         return round(random.uniform(1000, 100000), 2)  # Random decimal value
 
-    elif data_type == 'VARCHAR':
-        return fake.word()  # Single word for VARCHAR type
-
     elif data_type == 'INT':
-        if column_name in ["Age", "ChildrenCount", "LoanAmount", "TransactionAmount", "Salary"]:
-            return random.randint(18, 100)  # Random integer for age or salary, etc.
+        if column_name in ["Age", "ChildrenCount", "LoyaltyPoints"]:
+            return random.randint(18, 100)  # Random integer for age or loyalty points
         else:
             return random.randint(1, 1000)  # Random integer
 
@@ -81,7 +86,7 @@ def generate_value(column_name, data_type):
         return random.choice([True, False])  # Random Boolean value
 
 # Open a CSV file for writing
-with open('generated_data.csv', mode='w', newline='') as file:
+with open('classified_dataset.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     
     # Write the header row
@@ -92,7 +97,7 @@ with open('generated_data.csv', mode='w', newline='') as file:
         table_name = f"Table_{random.randint(1, 20)}"
         column_name = random.choice(list(column_data.keys()))
         data_type = column_data[column_name]
-        sensitivity_level = random.choice(sensitivity_levels)
+        sensitivity_level = column_sensitivity.get(column_name, "Public")
         example_value = generate_value(column_name, data_type)
         
         # Write a row
