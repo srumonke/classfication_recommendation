@@ -35,7 +35,6 @@ print(f"Initial Model Accuracy: {accuracy_score(y_test, y_pred)}")
 
 # Function to save new labeled data
 def save_feedback(input_data, predicted_sensitivity, feedback):
-    # Save this to a CSV or database for retraining
     new_data = pd.DataFrame({
         'Features': [input_data],
         'Sensitivity Level': [predicted_sensitivity] if feedback == 'yes' else ['None']
@@ -52,7 +51,6 @@ async def on_message(message):
         return
 
     if message.content.startswith('!classify'):
-        # Collect the data input from the user
         user_input = message.content[9:].strip()
         
         if not user_input:
@@ -72,11 +70,9 @@ async def on_message(message):
             
             if response.content.lower() == 'yes':
                 await message.channel.send("Thank you! We will use this feedback to improve the system.")
-                # Save feedback to improve the system
                 save_feedback(user_input, prediction, 'yes')
             else:
                 await message.channel.send("Understood. We will not use this recommendation.")
-                # Optionally, save this feedback as well
                 save_feedback(user_input, prediction, 'no')
             
         except Exception as e:
