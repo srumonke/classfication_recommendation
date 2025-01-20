@@ -1,3 +1,7 @@
 "Users, Email, String, example@example.com",Confidential
 "Users, Email, String, example@example.com",Confidential
 "Users, Email, String, example@example.com",Confidential
+"Table_19,LoginAttempts,INT,695",None
+"Table_19,LoginAttempts,INT,695",None
+"Table_19,LoginAttempts,INT,695",Private
+"table_ex, salary, INT, 278482",Confidential
