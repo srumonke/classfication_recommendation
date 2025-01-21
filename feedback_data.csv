@@ -5,3 +5,9 @@
 "Table_19,LoginAttempts,INT,695",None
 "Table_19,LoginAttempts,INT,695",Private
 "table_ex, salary, INT, 278482",Confidential
+"table_exp, email, TEXT, skrishnamurthy7@slb.com",Private
+"Employees, SSN, Integer, 123-45-6789",None
+"table_anc,sp_email,TEXT,Secret,skrsahn@gmail.com",Secret
+"Table_234,Tax,DECIMAL,23453450.99",None
+"Employees, SSN, Integer, 123-45-6789",None
+"Table_234,TaxRate,DECIMAL,43150.99",Confidential
