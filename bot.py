@@ -68,26 +68,28 @@ def save_feedback(input_data, predicted_sensitivity, feedback):
     new_data = pd.DataFrame([new_row])
     new_data.to_csv(feedback_file, mode='a', header=not file_exists, index=False)
 
-# Command to display options
+# Event: Bot is ready
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
 
+# Event: On message received
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
 
-    # Command to show available bot functions
+    # Help command
     if message.content.startswith('!help'):
         await message.channel.send(
             "Here are the available commands:\n"
             "`!classify`: Classify a table column's sensitivity level.\n"
             "`!train`: Add new training data.\n"
             "`!retrain`: Retrain the model with updated data.\n"
+            "`!exit`: Shut down the bot.\n"
         )
 
-    # Command to classify input and give recommendation
+    # Classify command
     if message.content.startswith('!classify'):
         user_input = message.content[9:].strip()
         
@@ -115,7 +117,7 @@ async def on_message(message):
             await message.channel.send("No response received in time. Please try again.")
             print(e)
 
-    # Command to submit new training data
+    # Train command
     if message.content.startswith('!train'):
         user_input = message.content[7:].strip()
 
@@ -146,7 +148,7 @@ async def on_message(message):
             await message.channel.send("An error occurred while saving your data. Please try again.")
             print(e)
 
-    # Command to retrain the model
+    # Retrain command
     if message.content.startswith('!retrain'):
         try:
             data = pd.read_csv(file_path)
@@ -161,7 +163,12 @@ async def on_message(message):
             await message.channel.send("An error occurred during retraining. Please check the training data.")
             print(e)
 
-# Load the token from environment variable and run the bot
+    # Exit command
+    if message.content.startswith('!exit'):
+        await message.channel.send("Shutting down the bot. Goodbye!")
+        await client.close()
+
+# Run the bot using environment variable
 token = os.getenv("DISCORD_TOKEN")
 if token:
     client.run(token)
