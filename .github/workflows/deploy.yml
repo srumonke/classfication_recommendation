@@ -46,5 +46,5 @@ jobs:
             --region ${{ env.REGION }} \
             --memory 512Mi \
             --timeout 300s \
-            --set-secrets DISCORD_TOKEN=projects/${{ env.PROJECT_ID }}/secrets/DISCORD_TOKEN:latest \
+            --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest \
             --allow-unauthenticated
