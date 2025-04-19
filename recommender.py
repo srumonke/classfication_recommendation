@@ -46,17 +46,15 @@ if not X_test.empty:
 
 # Function to save new labeled data with the same format as the training dataset
 def save_feedback(input_data, predicted_sensitivity, feedback):
-    # Split the input data into components
     parts = input_data.split(",")
     if len(parts) < 4:
-        return  # If the input doesn't have the correct format, we do nothing
+        return
     
     table_name = parts[0].strip()
     column_name = parts[1].strip()
     data_type = parts[2].strip()
     example_value = " ".join(parts[3:]).strip()
 
-    # Create a new row for feedback data
     new_row = {
         'Table Name': table_name,
         'Column Name': column_name,
@@ -64,17 +62,13 @@ def save_feedback(input_data, predicted_sensitivity, feedback):
         'Sensitivity Level': predicted_sensitivity if feedback == 'yes' else 'None',
         'Example Values': example_value
     }
-    
-    # Define feedback file path
+
     feedback_file = 'feedback_data.csv'
-    
-    # Check if feedback file exists
     file_exists = os.path.isfile(feedback_file)
-    
-    # Append feedback data to the file
     new_data = pd.DataFrame([new_row])
     new_data.to_csv(feedback_file, mode='a', header=not file_exists, index=False)
 
+# Command to display options
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
@@ -84,6 +78,15 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    # Command to show available bot functions
+    if message.content.startswith('!help'):
+        await message.channel.send(
+            "Here are the available commands:\n"
+            "`!classify`: Classify a table column's sensitivity level.\n"
+            "`!train`: Add new training data.\n"
+            "`!retrain`: Retrain the model with updated data.\n"
+        )
+
     # Command to classify input and give recommendation
     if message.content.startswith('!classify'):
         user_input = message.content[9:].strip()
@@ -92,11 +95,9 @@ async def on_message(message):
             await message.channel.send("Please provide the data input in the format: 'Table Name, Column Name, Data Type, Example Value'.")
             return
         
-        # Predict sensitivity
         prediction = pipeline.predict([user_input])[0]
         await message.channel.send(f"Recommendation: The sensitivity level for '{user_input}' is {prediction}. Do you accept this recommendation? (yes/no)")
 
-        # Wait for user response
         def check(m):
             return m.author == message.author and m.channel == message.channel and m.content.lower() in ['yes', 'no']
 
@@ -122,14 +123,12 @@ async def on_message(message):
             await message.channel.send("Please provide the data input in the format: 'Table Name, Column Name, Data Type, Sensitivity Level, Example Value'.")
             return
 
-        # Validate input format
         try:
             table_name, column_name, data_type, sensitivity_level, example_value = [x.strip() for x in user_input.split(',')]
         except ValueError:
             await message.channel.send("Invalid input format. Ensure the input has 5 comma-separated values.")
             return
 
-        # Append to training data
         new_row = {
             'Table Name': table_name,
             'Column Name': column_name,
@@ -139,10 +138,7 @@ async def on_message(message):
         }
 
         try:
-            # Check if the file exists
             file_exists = os.path.isfile(file_path)
-            
-            # Save to CSV file
             new_data = pd.DataFrame([new_row])
             new_data.to_csv(file_path, mode='a', header=not file_exists, index=False)
             await message.channel.send("Thank you! Your training data has been added.")
@@ -153,15 +149,12 @@ async def on_message(message):
     # Command to retrain the model
     if message.content.startswith('!retrain'):
         try:
-            # Reload training data
             data = pd.read_csv(file_path)
             data["Features"] = (
                 data["Table Name"] + " " + data["Column Name"] + " " + data["Data Type"] + " " + data["Example Values"].astype(str)
             )
             X = data["Features"]
             y = data["Sensitivity Level"]
-            
-            # Retrain model
             pipeline.fit(X, y)
             await message.channel.send("The model has been successfully retrained with the new data!")
         except Exception as e:
