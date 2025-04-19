@@ -27,7 +27,8 @@ jobs:
 
       - name: Authenticate with service account
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" | gcloud auth activate-service-account --key-file=-
+          echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-service-key.json
+          gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json
           gcloud auth list
           gcloud config set project big-formula-457308-s5
 
