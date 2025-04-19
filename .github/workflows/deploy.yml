@@ -1,56 +1,41 @@
-name: Deploy Discord Bot to Cloud Run from Artifact registry
+name: Build and Push to Artifact Registry
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  PROJECT_ID: big-formula-457308-s5
+  REGION: europe-west1
+  GAR_LOCATION: europe-west1-docker.pkg.dev/big-formula-457308-s5/classify-bot-repo/classifybot-image
+
+
 
 jobs:
-  build-and-deploy:
-    name: Build and Deploy to Cloud Run
+  build-push-artifact:
     runs-on: ubuntu-latest
-
-    permissions:
-      id-token: write
-      contents: read
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: "Checkout"
+        uses: actions/checkout@v3
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+      - id: "auth"
+        uses: google-github-actions/auth@v1
         with:
-          project_id: big-formula-457308-s5
-          service_account_email: sa-github-actions@big-formula-457308-s5.iam.gserviceaccount.com
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
 
-      - name: Authenticate with service account
-        run: |
-          echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-service-key.json
-          gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json
-          gcloud auth list
-          gcloud config set project big-formula-457308-s5
+      - name: "Set up Cloud SDK"
+        uses: google-github-actions/setup-gcloud@v1
 
-      - name: Configure Docker for Artifact Registry
-        run: |
-          gcloud auth configure-docker europe-west1-docker.pkg.dev
+      - name: "Use gcloud CLI"
+        run: gcloud info
+
+      - name: "Docker auth"
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Build Docker image
-        run: |
-          docker build -t europe-west1-docker.pkg.dev/big-formula-457308-s5/classify-bot-repo/discord-bot:$GITHUB_SHA .
+        run: docker build . --file Dockerfile --tag ${{ env.GAR_LOCATION }}
 
-      - name: Push Docker image to Artifact Registry
-        run: |
-          docker push europe-west1-docker.pkg.dev/big-formula-457308-s5/classify-bot-repo/discord-bot:$GITHUB_SHA
-
-      - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy discord-bot \
-            --image europe-west1-docker.pkg.dev/big-formula-457308-s5/classify-bot-repo/discord-bot:$GITHUB_SHA \
-            --platform managed \
-            --region europe-west1 \
-            --memory 512Mi \
-            --timeout 300s \
-            --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest \
-            --allow-unauthenticated
+      - name: Push Docker image
+        run: docker push ${{ env.GAR_LOCATION }}
