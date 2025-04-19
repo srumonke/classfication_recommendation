@@ -1,4 +1,4 @@
-name: Build and Push to Artifact Registry and run on cloud run job
+name: Build, Deploy, and Run Cloud Run Job
 
 on:
   push:
@@ -9,53 +9,55 @@ on:
 env:
   PROJECT_ID: big-formula-457308-s5
   REGION: europe-west1
-  GAR_LOCATION: europe-west1-docker.pkg.dev/big-formula-457308-s5/classify-bot-repo/classifybot-image
+  GAR_LOCATION: europe-west1-docker.pkg.dev/big-formula-457308-s5/classify-bot-repo/discord-bot
+  JOB_NAME: discord-bot-job
 
 jobs:
-  build-push-artifact:
+  build-deploy-run:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - id: "auth"
+      - id: auth
         uses: google-github-actions/auth@v1
         with:
           credentials_json: "${{ secrets.GCP_SA_KEY }}"
 
-      - name: "Set up Cloud SDK"
+      - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
 
-      - name: "Use gcloud CLI"
-        run: gcloud info
-
-      - name: "Docker auth"
+      - name: Docker Auth
         run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
-      - name: Build Docker image
-        run: docker build . --file Dockerfile --tag ${{ env.GAR_LOCATION }}
+      - name: Build Docker Image
+        run: |
+          docker build . --file Dockerfile --tag ${{ env.GAR_LOCATION }}:${{ github.sha }}
 
-      - name: Push Docker image
-        run: docker push ${{ env.GAR_LOCATION }}
+      - name: Push Docker Image
+        run: docker push ${{ env.GAR_LOCATION }}:${{ github.sha }}
 
       - name: Deploy Cloud Run Job
         run: |
-          JOB_NAME=discord-bot-job
-          IMAGE=${{ env.GAR_LOCATION }}
+          IMAGE=${{ env.GAR_LOCATION }}:${{ github.sha }}
 
-          # Check if the job exists
-          if gcloud run jobs describe $JOB_NAME --region=${{ env.REGION }} --format="value(name)" 2>/dev/null; then
-            echo "Job exists. Updating..."
-            gcloud run jobs update $JOB_NAME \
-              --image $IMAGE \
-              --region=${{ env.REGION }} \
-              --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest
-          else
-            echo "Creating new Cloud Run Job..."
-            gcloud run jobs create $JOB_NAME \
+          if gcloud run jobs describe ${{ env.JOB_NAME }} --region=${{ env.REGION }} --format="value(name)" 2>/dev/null; then
+            echo "Updating existing job..."
+            gcloud run jobs update ${{ env.JOB_NAME }} \
               --image $IMAGE \
               --region=${{ env.REGION }} \
               --memory 512Mi \
-              --timeout 900s \
+              --task-timeout 900s \
+              --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest
+          else
+            echo "Creating new job..."
+            gcloud run jobs create ${{ env.JOB_NAME }} \
+              --image $IMAGE \
+              --region=${{ env.REGION }} \
+              --memory 512Mi \
+              --task-timeout 900s \
               --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest
           fi
+
+      - name: Run Cloud Run Job
+        run: gcloud run jobs execute ${{ env.JOB_NAME }} --region=${{ env.REGION }} --wait
