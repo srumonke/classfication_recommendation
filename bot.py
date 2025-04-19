@@ -161,8 +161,9 @@ async def on_message(message):
             await message.channel.send("An error occurred during retraining. Please check the training data.")
             print(e)
 
-# Load the token from a file and run the bot
-with open('token.txt', 'r') as file:
-    token = file.read().strip()
-
-client.run(token)
+# Load the token from environment variable and run the bot
+token = os.getenv("DISCORD_TOKEN")
+if token:
+    client.run(token)
+else:
+    print("DISCORD_TOKEN environment variable not found.")
