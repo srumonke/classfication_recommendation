@@ -47,7 +47,7 @@ jobs:
               --image $IMAGE \
               --region=${{ env.REGION }} \
               --memory 512Mi \
-              --task-timeout 900s \
+              --task-timeout 60s \
               --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest
           else
             echo "Creating new job..."
@@ -55,7 +55,7 @@ jobs:
               --image $IMAGE \
               --region=${{ env.REGION }} \
               --memory 512Mi \
-              --task-timeout 900s \
+              --task-timeout 60s \
               --set-secrets DISCORD_TOKEN=DISCORD_TOKEN:latest
           fi
 
