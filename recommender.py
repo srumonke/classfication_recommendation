@@ -13,7 +13,7 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 # File path for training data
-file_path = 'training_sensitivity.csv'
+file_path = 'train_dataset.csv'
 
 # Load dataset or create a new one
 if os.path.isfile(file_path):
@@ -44,14 +44,35 @@ if not X_test.empty:
     y_pred = pipeline.predict(X_test)
     print(f"Initial Model Accuracy: {accuracy_score(y_test, y_pred)}")
 
-# Function to save new labeled data
+# Function to save new labeled data with the same format as the training dataset
 def save_feedback(input_data, predicted_sensitivity, feedback):
-    new_data = pd.DataFrame({
-        'Features': [input_data],
-        'Sensitivity Level': [predicted_sensitivity] if feedback == 'yes' else ['None']
-    })
+    # Split the input data into components
+    parts = input_data.split(",")
+    if len(parts) < 4:
+        return  # If the input doesn't have the correct format, we do nothing
+    
+    table_name = parts[0].strip()
+    column_name = parts[1].strip()
+    data_type = parts[2].strip()
+    example_value = " ".join(parts[3:]).strip()
+
+    # Create a new row for feedback data
+    new_row = {
+        'Table Name': table_name,
+        'Column Name': column_name,
+        'Data Type': data_type,
+        'Sensitivity Level': predicted_sensitivity if feedback == 'yes' else 'None',
+        'Example Values': example_value
+    }
+    
+    # Define feedback file path
     feedback_file = 'feedback_data.csv'
+    
+    # Check if feedback file exists
     file_exists = os.path.isfile(feedback_file)
+    
+    # Append feedback data to the file
+    new_data = pd.DataFrame([new_row])
     new_data.to_csv(feedback_file, mode='a', header=not file_exists, index=False)
 
 @client.event

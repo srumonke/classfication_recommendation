@@ -1,106 +1,106 @@
 import random
 import faker
 import csv
+import uuid
+import hashlib
+import secrets
 
-# Initialize Faker for generating random values
+# Initialize Faker
 fake = faker.Faker()
 
-# Define 100 meaningful column names with their corresponding data types
-column_data = {
-    "FullName": "TEXT", "Age": "INT", "Gender": "TEXT", "DateOfBirth": "DATE", "Address": "TEXT",
-    "PhoneNumber": "TEXT", "Email": "TEXT", "Occupation": "TEXT", "Salary": "DECIMAL",
-    "Country": "TEXT", "State": "TEXT", "City": "TEXT", "ZipCode": "TEXT", "MaritalStatus": "TEXT",
-    "ChildrenCount": "INT", "SpouseName": "TEXT", "Hobby": "TEXT", "SocialSecurityNumber": "TEXT",
-    "TaxID": "TEXT", "CreditCardNumber": "TEXT", "BankAccountNumber": "TEXT", "LoanAmount": "DECIMAL",
-    "InvestmentValue": "DECIMAL", "MortgageAmount": "DECIMAL", "HealthInsuranceNumber": "TEXT",
-    "MedicalHistory": "TEXT", "Diagnosis": "TEXT", "Prescription": "TEXT", "InsuranceClaims": "TEXT",
-    "PerformanceReviews": "TEXT", "PaymentHistory": "TEXT", "TransactionAmount": "DECIMAL",
-    "TransactionDate": "DATE", "PaymentMethod": "TEXT", "BrowserType": "TEXT", "LoginTime": "DATE",
-    "LastLoginTime": "DATE", "ProfilePictureURL": "TEXT", "IP_Address": "TEXT", "DeviceType": "TEXT",
-    "SocialMediaHandle": "TEXT", "AccountStatus": "TEXT", "MembershipStatus": "TEXT",
-    "PurchaseHistory": "TEXT", "Wishlist": "TEXT", "CartItems": "TEXT", "FavoriteProducts": "TEXT",
-    "CustomerFeedback": "TEXT", "ProductReviews": "TEXT", "OrderHistory": "TEXT",
-    "ShippingAddress": "TEXT", "BillingAddress": "TEXT", "DiscountCoupons": "TEXT", "LoyaltyPoints": "INT",
-    "EmployeeID": "TEXT", "Department": "TEXT", "JobTitle": "TEXT", "JobDescription": "TEXT",
-    "WorkLocation": "TEXT", "StartDate": "DATE", "EndDate": "DATE", "ContractType": "TEXT",
-    "EmployeePerformance": "TEXT", "ManagerName": "TEXT", "TeamMembers": "TEXT", "LeaveBalance": "INT",
-    "HealthRecord": "TEXT", "FamilyHistory": "TEXT", "EmergencyContact": "TEXT", "EmployeeBenefits": "TEXT",
-    "AnnualSalary": "DECIMAL", "BonusAmount": "DECIMAL", "TaxRate": "DECIMAL", "RetirementPlan": "TEXT",
-    "CompanyStockOptions": "TEXT", "PayrollDetails": "TEXT", "WorkEmail": "TEXT", "WorkPhone": "TEXT",
-    "CorporateCreditCard": "TEXT", "BusinessTravelHistory": "TEXT", "ConferenceAttendance": "TEXT",
-    "SystemAccessLevel": "TEXT", "LoginAttempts": "INT", "FailedLogins": "INT", "APIKey": "TEXT",
-    "SessionToken": "TEXT", "PasswordHash": "TEXT", "SecurityQuestions": "TEXT", "TwoFactorEnabled": "BOOLEAN",
-    "AuditLogs": "TEXT", "LastPasswordChange": "DATE", "SecurityBreachHistory": "TEXT", "NetworkAccessLogs": "TEXT",
-    "AccessControlLists": "TEXT", "ServerIPs": "TEXT", "FirewallRules": "TEXT", "BackupHistory": "TEXT",
-    "DisasterRecoveryPlan": "TEXT", "IncidentReports": "TEXT", "RiskAssessment": "TEXT", "ComplianceReports": "TEXT",
-    "SecurityPolicies": "TEXT", "DataEncryptionKeys": "TEXT", "SensitiveDataAccess": "TEXT", "DocumentVersion": "TEXT",
-    "ConfidentialReports": "TEXT", "InternalMeetings": "TEXT", "CompanyBudget": "DECIMAL",
-    "LegalDocuments": "TEXT", "VendorContracts": "TEXT", "SupplierDetails": "TEXT", "ThirdPartyContracts": "TEXT",
-    "InternalEmails": "TEXT", "MeetingNotes": "TEXT", "ExpenseReports": "TEXT", "ResourceAllocation": "TEXT",
-    "ProjectBudget": "DECIMAL", "ProjectTimeline": "TEXT", "TaskAssignments": "TEXT", "TeamCollaboration": "TEXT",
-    "ProjectFeedback": "TEXT", "ClientContracts": "TEXT", "ClientInvoices": "TEXT", "CustomerSupportTickets": "TEXT"
+# Define a mapping of meaningful tables to their relevant columns, types, and sensitivity
+tables = {
+    "Employee": {
+        "FullName": ("TEXT", "Private"),
+        "Age": ("INT", "Private"),
+        "Gender": ("TEXT", "Private"),
+        "DateOfBirth": ("DATE", "Private"),
+        "Address": ("TEXT", "Private"),
+        "PhoneNumber": ("TEXT", "Private"),
+        "Email": ("TEXT", "Private"),
+        "EmployeeID": ("TEXT", "Private"),
+        "Department": ("TEXT", "Private"),
+        "JobTitle": ("TEXT", "Private"),
+        "Salary": ("DECIMAL", "Confidential"),
+        "ManagerName": ("TEXT", "Private"),
+    },
+    "Finance": {
+        "BankAccountNumber": ("TEXT", "Confidential"),
+        "LoanAmount": ("DECIMAL", "Confidential"),
+        "InvestmentValue": ("DECIMAL", "Confidential"),
+        "CreditCardNumber": ("TEXT", "Secret"),
+        "TaxID": ("TEXT", "Secret"),
+        "CompanyBudget": ("DECIMAL", "Confidential"),
+    },
+    "Healthcare": {
+        "MedicalHistory": ("TEXT", "Confidential"),
+        "Diagnosis": ("TEXT", "Confidential"),
+        "Prescription": ("TEXT", "Confidential"),
+        "HealthInsuranceNumber": ("TEXT", "Secret"),
+        "EmergencyContact": ("TEXT", "Private"),
+    },
+    "ITSecurity": {
+        "APIKey": ("TEXT", "Secret"),
+        "SessionToken": ("TEXT", "Secret"),
+        "PasswordHash": ("TEXT", "Secret"),
+        "TwoFactorEnabled": ("BOOLEAN", "Confidential"),
+        "LoginAttempts": ("INT", "Private"),
+    },
+    "Sales": {
+        "CustomerFeedback": ("TEXT", "Public"),
+        "OrderHistory": ("TEXT", "Public"),
+        "DiscountCoupons": ("TEXT", "Public"),
+        "LoyaltyPoints": ("INT", "Private"),
+        "FavoriteProducts": ("TEXT", "Public"),
+    }
 }
 
-# Define sensitivity levels with logical mapping
-sensitivity_map = {
-    "Public": ["Hobby", "BrowserType", "DeviceType", "PurchaseHistory", "FavoriteProducts", "CustomerFeedback"],
-    "Private": ["FullName", "Age", "Gender", "DateOfBirth", "Address", "PhoneNumber", "Email", "City", "State", "Country", "JobTitle", "StartDate", "EndDate", "SocialMediaHandle", "LoginAttempts", "FailedLogins"],
-    "Confidential": ["Salary", "BankAccountNumber", "LoanAmount", "InvestmentValue", "MedicalHistory", "EmployeePerformance", "TaxRate", "InternalEmails", "VendorContracts", "ClientInvoices", "CorporateCreditCard"],
-    "Secret": ["SocialSecurityNumber", "TaxID", "CreditCardNumber", "HealthInsuranceNumber", "PasswordHash", "APIKey", "SessionToken", "DataEncryptionKeys", "RiskAssessment", "DisasterRecoveryPlan", "FirewallRules", "BackupHistory"]
-}
+# Flatten column details
+column_details = []
+for table, columns in tables.items():
+    for column, (dtype, sensitivity) in columns.items():
+        column_details.append((table, column, dtype, sensitivity))
 
-# Precompute sensitivity levels for all column names
-column_sensitivity = {col: level for level, columns in sensitivity_map.items() for col in columns}
-
-# Function to generate random example values based on the column name and data type
-def generate_value(column_name, data_type):
-    if data_type == 'TEXT':
-        if column_name in ["FullName", "SpouseName", "EmployeeID", "TeamMembers", "ManagerName"]:
+# Generate realistic values
+def generate_value(column, dtype):
+    if column == "Gender":
+        return random.choice(["male", "female", "trans"])
+    elif column == "APIKey":
+        return secrets.token_hex(16)  # 32-character hex string
+    elif column == "SessionToken":
+        return str(uuid.uuid4())  # UUID v4 format
+    elif column == "PasswordHash":
+        return hashlib.sha256(fake.password().encode()).hexdigest()  # Simulated SHA-256 password hash
+    elif dtype == "TEXT":
+        if column in ["FullName", "ManagerName", "EmergencyContact"]:
             return fake.name()
-        elif column_name in ["Email", "WorkEmail"]:
+        elif "Email" in column:
             return fake.email()
-        elif column_name in ["PhoneNumber"]:
+        elif "Phone" in column:
             return fake.phone_number()
-        elif column_name in ["Address"]:
+        elif "Address" in column:
             return fake.address()
-        elif column_name in ["Country", "State", "City"]:
-            return fake.city()
-        elif column_name in ["SocialMediaHandle"]:
-            return fake.user_name()
+        elif column in ["BankAccountNumber", "CreditCardNumber", "HealthInsuranceNumber", "TaxID"]:
+            return fake.iban()
         else:
-            return fake.text(max_nb_chars=50)
+            return fake.text(max_nb_chars=20)
+    elif dtype == "INT":
+        return random.randint(18, 100)
+    elif dtype == "DECIMAL":
+        return round(random.uniform(1000, 100000), 2)
+    elif dtype == "DATE":
+        return fake.date()
+    elif dtype == "BOOLEAN":
+        return random.choice([True, False])
 
-    elif data_type == 'DECIMAL':
-        return round(random.uniform(1000, 100000), 2)  # Random decimal value
-
-    elif data_type == 'INT':
-        if column_name in ["Age", "ChildrenCount", "LoyaltyPoints"]:
-            return random.randint(18, 100)  # Random integer for age or loyalty points
-        else:
-            return random.randint(1, 1000)  # Random integer
-
-    elif data_type == 'DATE':
-        return fake.date()  # Random date value
-
-    elif data_type == 'BOOLEAN':
-        return random.choice([True, False])  # Random Boolean value
-
-# Open a CSV file for writing
+# Create CSV file
 with open('classified_dataset.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
-    
-    # Write the header row
     writer.writerow(["Table Name", "Column Name", "Data Type", "Sensitivity Level", "Example Values"])
-    
-    # Create 10,000 rows
-    for i in range(10000):
-        table_name = f"Table_{random.randint(1, 20)}"
-        column_name = random.choice(list(column_data.keys()))
-        data_type = column_data[column_name]
-        sensitivity_level = column_sensitivity.get(column_name, "Public")
+
+    for _ in range(10000):
+        table_name, column_name, data_type, sensitivity_level = random.choice(column_details)
         example_value = generate_value(column_name, data_type)
-        
-        # Write a row
         writer.writerow([table_name, column_name, data_type, sensitivity_level, example_value])
 
-print("CSV file with 10,000 rows generated successfully!")
+print("CSV file 'classified_dataset.csv' with 10,000 rows generated successfully!")
