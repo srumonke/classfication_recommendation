@@ -60,4 +60,4 @@ jobs:
           fi
 
       - name: Run Cloud Run Job
-        run: gcloud run jobs execute ${{ env.JOB_NAME }} --region=${{ env.REGION }} --wait
+        run: gcloud run jobs execute ${{ env.JOB_NAME }} --region=${{ env.REGION }}
