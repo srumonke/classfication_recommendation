@@ -44,12 +44,12 @@ if not X_test.empty:
     y_pred = pipeline.predict(X_test)
     print(f"Initial Model Accuracy: {accuracy_score(y_test, y_pred)}")
 
-# Function to save new labeled data with the same format as the training dataset
-def save_feedback(input_data, predicted_sensitivity, feedback):
+# Function to save feedback data
+def save_feedback(input_data, sensitivity_level):
     parts = input_data.split(",")
     if len(parts) < 4:
         return
-    
+
     table_name = parts[0].strip()
     column_name = parts[1].strip()
     data_type = parts[2].strip()
@@ -59,14 +59,13 @@ def save_feedback(input_data, predicted_sensitivity, feedback):
         'Table Name': table_name,
         'Column Name': column_name,
         'Data Type': data_type,
-        'Sensitivity Level': predicted_sensitivity if feedback == 'yes' else 'None',
+        'Sensitivity Level': sensitivity_level,
         'Example Values': example_value
     }
 
     feedback_file = 'feedback_data.csv'
     file_exists = os.path.isfile(feedback_file)
-    new_data = pd.DataFrame([new_row])
-    new_data.to_csv(feedback_file, mode='a', header=not file_exists, index=False)
+    pd.DataFrame([new_row]).to_csv(feedback_file, mode='a', header=not file_exists, index=False)
 
 # Event: Bot is ready
 @client.event
@@ -92,11 +91,11 @@ async def on_message(message):
     # Classify command
     if message.content.startswith('!classify'):
         user_input = message.content[9:].strip()
-        
+
         if not user_input:
             await message.channel.send("Please provide the data input in the format: 'Table Name, Column Name, Data Type, Example Value'.")
             return
-        
+
         prediction = pipeline.predict([user_input])[0]
         await message.channel.send(f"Recommendation: The sensitivity level for '{user_input}' is {prediction}. Do you accept this recommendation? (yes/no)")
 
@@ -105,14 +104,25 @@ async def on_message(message):
 
         try:
             response = await client.wait_for('message', check=check, timeout=60)
-            
+
             if response.content.lower() == 'yes':
                 await message.channel.send("Thank you! We will use this feedback to improve the system.")
-                save_feedback(user_input, prediction, 'yes')
+                save_feedback(user_input, prediction)
             else:
-                await message.channel.send("Understood. We will not use this recommendation.")
-                save_feedback(user_input, prediction, 'no')
-            
+                await message.channel.send("Thanks for your feedback. Could you please tell us the correct sensitivity level? (e.g., public, private, secret)")
+
+                def level_check(m):
+                    return m.author == message.author and m.channel == message.channel
+
+                try:
+                    correction = await client.wait_for('message', check=level_check, timeout=60)
+                    corrected_level = correction.content.strip().lower()
+                    await message.channel.send(f"Thank you! We've recorded your correction as '{corrected_level}'.")
+                    save_feedback(user_input, corrected_level)
+                except Exception as e:
+                    await message.channel.send("No correction received in time. Please try again later.")
+                    print(e)
+
         except Exception as e:
             await message.channel.send("No response received in time. Please try again.")
             print(e)
