@@ -66,13 +66,7 @@ See [`deploy.yml`](.github/workflows/deploy.yml) for full setup.
 
 ## 🔐 Secret Management
 
-Create a secret in GCP Secret Manager:
-
-```bash
-echo -n "your-discord-token" | \
-gcloud secrets create DISCORD_TOKEN --data-file=- \
---replication-policy="automatic"
-```
+Create a secret in GCP Secret Manager
 
 Grant access to the GitHub Actions service account:
 ```bash
