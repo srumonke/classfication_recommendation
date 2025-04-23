@@ -66,7 +66,7 @@ See [`deploy.yml`](.github/workflows/deploy.yml) for full setup.
 
 ## 🔐 Secret Management
 
-Create a secret in GCP Secret Manager
+Create a secret in GCP Secret Manager for DISCORD_TOKEN
 
 Grant access to the GitHub Actions service account:
 ```bash
