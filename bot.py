@@ -81,7 +81,7 @@ async def on_message(message):
     # Help command
     if message.content.startswith('!help'):
         await message.channel.send(
-            "Here are the available commands (test):\n"
+            "Here are the available commands (test2):\n"
             "`!classify`: Classify a table column's sensitivity level.\n"
             "`!train`: Add new training data.\n"
             "`!retrain`: Retrain the model with updated data.\n"
