@@ -2,6 +2,7 @@
 
 ClassifyBot is a smart Discord bot that classifies table column sensitivity as public, private, or secret using a trained Random Forest model. It's built for intelligent cloud data governance with user feedback, retraining, and GCP deployment support.
 
+presentation: https://prezi.com/view/YaNe6PQP7lOqfhiGBOH8/
 ---
 
 ## 🌟 Features
